@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Where is my Spot ?</title>
+    <link rel='stylesheet' href='/public/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Where is my Spot ?</h1>
+    <h2>Welcome to Spotland</h2>
+    <form method = "get" action = "/process">
+            <input type="text" class="form-control" placeholder="Entrez le nom du site votre spot"
+                name = "Site" id="Site">
+           <input class="btn btn-default" type="submit" value="Submit">
+        </form>
+        <p> <b> <%= introuvable %> </b> </p>
+        <p><%= sopot %></p>
+        <p> <%if(sopot!=""){ %> Surf : <%if(WantThisSpot.properties.SURF==1){ %> oui <% } else{ %> non <% } %> </p>
+        <p> kite Surf : <%if(WantThisSpot.properties.KITE_SURF==1){ %> oui <% } else{ %> non <% } %> </p>
+        <p>  wind Surf : <%if(WantThisSpot.properties.WIND_SURF==1){ %> oui <% } else{ %> non <% } %> </p>
+
+        <p> DU PLUS AU MOINS PROCHE (à vol d'oiseau) </p> <% } %>
+        <ul><%if(sopot!=""){Proches.forEach(function(proche){ %>
+                <li> <b> <%= proche.properties.DENOMINATI  %> </b><li>
+                  <li> confort : <span> <%= proche.properties.CLASSEMENT %> </span> <li>
+                  <li>commune: <%= proche.properties.COMMUNE %><li>
+                  <li><% if(proche.properties.LIEU_DIT!=null){ %> lieu-dit: <%= proche.properties.LIEU_DIT %> <% } %>   <li>
+                  <li>__________________________________________<li>
+                  <li> <li>
+                  <% })} %>
+                </ul>
+
+
+        <p>Noms des sites de spot de surf , kite et wind avec leur ville : </p>
+        <ul><% spots.forEach(function(spot){ %>
+        <li> <%= spot.properties.SITE %> à <%= spot.properties.COMMUNE %>  <li>
+        <% }) %>
+        </ul>
+
+
+
+
+  </body>
+</html>
